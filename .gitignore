@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Virtual environment (rebuild with: py -3.12 -m venv .venv + pip install -r requirements.txt)
+.venv/
+venv/
+
+# Test / tool caches
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Editors / OS
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Logs and local env files
+*.log
+.env
+
+# Kept on purpose (tests and the frozen reference depend on them):
+#   diabetic_data.csv, IDS_mapping.csv, model/pipeline.pkl, model/schema_values.json,
+#   eval/reference_val_scores.npy, eval/reference_val_X.pkl, eval/reference_pipeline_sha256.txt
