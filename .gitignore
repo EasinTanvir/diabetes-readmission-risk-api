@@ -28,6 +28,9 @@ desktop.ini
 *.log
 .env
 
-# Kept on purpose (tests and the frozen reference depend on them):
-#   diabetic_data.csv, IDS_mapping.csv, model/pipeline.pkl, model/schema_values.json,
-#   eval/reference_val_scores.npy, eval/reference_val_X.pkl, eval/reference_pipeline_sha256.txt
+# Patient-level data: download from UCI (see README "Data"), never commit
+diabetic_data.csv
+eval/reference_val_X.pkl
+
+# Kept on purpose: IDS_mapping.csv (code lookup, no patients), model/pipeline.pkl (336 KB),
+# model/schema_values.json, eval/reference_val_scores.npy, eval/reference_*_sha256.txt

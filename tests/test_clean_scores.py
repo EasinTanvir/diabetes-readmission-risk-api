@@ -3,10 +3,8 @@ import hashlib
 from collections import Counter
 
 import numpy as np
-import pandas as pd
-from pandas.testing import assert_frame_equal
 
-from conftest import ROOT
+from conftest import ROOT, frame_sha256
 from src.prep import prepare
 from src.schema import validate_patient
 
@@ -39,5 +37,6 @@ def test_all_validation_rows_identical(scorer, val_records):
 def test_prepared_table_identical(scorer, val_records):
     raw = [validate_patient(r)[0] for r in val_records]
     X = prepare(scorer.to_frame(raw), scorer.cfg, scorer.columns)
-    reference = pd.read_pickle(ROOT / "eval" / "reference_val_X.pkl").reset_index(drop=True)
-    assert_frame_equal(X, reference)
+    # exact fingerprint of eval/reference_val_X.pkl (the pickle itself is not in git)
+    reference = (ROOT / "eval" / "reference_val_X_sha256.txt").read_text().strip()
+    assert frame_sha256(X) == reference

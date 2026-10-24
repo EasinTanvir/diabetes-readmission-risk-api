@@ -5,6 +5,9 @@ Data: UCI "Diabetes 130-US Hospitals" (diabetic_data.csv, IDS_mapping.csv). Orig
 
 ## Rules
 - Never modify diabetic_data.csv, IDS_mapping.csv or Diabetes.ipynb. They are read-only sources.
+- diabetic_data.csv and eval/reference_val_X.pkl are patient-level and gitignored: never commit them
+  (download steps are in README "Data"). Tests check the reference table by hash
+  (eval/reference_val_X_sha256.txt) and skip data-dependent tests when the CSV is missing.
 - Never retrain or re-save model/pipeline.pkl without an explicit request. Its sha256 is in
   eval/reference_pipeline_sha256.txt.
 - Code lives in src/, tests in tests/, evaluation scripts and outputs in eval/, the model in model/.
