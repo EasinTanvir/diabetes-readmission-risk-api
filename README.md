@@ -76,7 +76,7 @@ py -3.12 -m venv .venv
 .venv\Scripts\uvicorn src.api:app --port 8000
 ```
 
-**Linux / macOS**
+**Linux / macOS (untested)**
 
 ```bash
 python3.12 -m venv .venv
@@ -156,7 +156,7 @@ local `uvicorn` run (patient 1003 is invalid on purpose):
 }
 ```
 
-An out-of-scope patient (patient 1001 with `discharge_disposition_id: 11`) returns:
+A patient with `discharge_disposition_id: 11` returns:
 `"error": "discharge_disposition_id: Value error, code 11 means died or hospice: out of model scope (not in training)"`.
 
 ## How the model works
@@ -164,9 +164,9 @@ An out-of-scope patient (patient 1001 with `discharge_disposition_id: 11`) retur
 ```mermaid
 flowchart LR
     A[diabetic_data.csv<br/>101,766 stays] --> B[Remove died / hospice<br/>99,343 stays]
-    B --> C[Target: readmitted '<30']
+    B --> C["Target: readmitted &lt; 30"]
     C --> D[Split by patient_nbr<br/>70 / 15 / 15]
-    D --> E[prepare: clean, group,<br/>encode -> 122 features]
+    D --> E["prepare: clean, group,<br/>encode -&gt; 122 features"]
     E --> F[HistGradientBoosting<br/>class_weight=balanced]
     F --> G[Cutoff = 90th percentile<br/>of validation scores]
 ```
