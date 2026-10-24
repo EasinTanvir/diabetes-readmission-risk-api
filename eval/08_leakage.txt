@@ -1,0 +1,58 @@
+1. Forbidden columns among model features
+   hits: none | n features: 122
+
+2. cfg learned from TRAINING only
+   bundle cfg == fit_cfg(train): True
+   fit_cfg(train+val) differs in: ['keep']
+      keep[medical_specialty]: train-only [] | extra with train+val ['ObstetricsandGynecology', 'Surgery-Cardiovascular/Thoracic', 'Urology']
+      keep[payer_code]: train-only [] | extra with train+val ['PO']
+   fit_cfg(all rows) differs in: ['keep']
+      keep[medical_specialty]: train-only [] | extra with all rows ['Gastroenterology', 'ObstetricsandGynecology', 'Surgery-Cardiovascular/Thoracic', 'Surgery-Vascular', 'Urology']
+      keep[payer_code]: train-only [] | extra with all rows ['DM', 'PO']
+
+3. One-hot column list built from training only
+   bundle columns == train dummies: True
+   dummies seen only in val: none | only in test: none
+
+4. Cutoff came from validation
+   90th pct of train scores: 0.6411
+   90th pct of val   scores: 0.6411
+   90th pct of test  scores: 0.6406
+   bundle cutoff:              0.6411
+
+5. Early stopping inside HGB (validation_fraction=0.1, not grouped by patient)
+   training rows from patients with >1 stay: 45.9%
+   -> the random 10% early-stop holdout shares patients with the fitting rows
+   iterations used: 89 of max_iter 200
+
+6. Notebook scan: where test data is touched
+   cell [7]: same transform as train/val
+   cell [8]: same transform as train/val
+   cell [9]: same transform as train/val
+   cell [11]: same transform as train/val
+   cell [12]: same transform as train/val
+   cell [13]: same transform as train/val
+   cell [14]: same transform as train/val
+   cell [17]: same transform as train/val
+   cell [20]: same transform as train/val
+   cell [22]: same transform as train/val
+   cell [25]: same transform as train/val
+   cell [29]: same transform as train/val
+   cell [31]: same transform as train/val
+   cell [33]: same transform as train/val
+   cell [42]: METRIC/FIT ON TEST
+       print("ROC-AUC:", round(roc_auc_score(y_test, test_probs), 3))
+       print("avg precision:", round(average_precision_score(y_test, test_probs), 3))
+       print(confusion_matrix(y_test, flagged.astype(int)))
+
+7. Notebook scan: cross-validation uses patient groups
+   cell [38]: GroupKFold=True | groups=g_train passed=True
+   cell [39]: GroupKFold=True | groups=g_train passed=True
+   cell [40]: GroupKFold=True | groups=g_train passed=True
+
+8. Notebook scan: decisions made on validation (cutoff and model choice)
+   cell [35] uses validation for metrics/quantile
+   cell [36] uses validation for metrics/quantile
+   cell [37] uses validation for metrics/quantile
+   cell [41] uses validation for metrics/quantile
+   cell [42] uses validation for metrics/quantile

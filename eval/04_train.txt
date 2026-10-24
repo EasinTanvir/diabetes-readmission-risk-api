@@ -1,0 +1,5 @@
+saved: D:\MachineLearning\Diabetes_DataSet_With_Api\model\pipeline.pkl
+iterations used (early stopping): 89
+cutoff: 0.6411
+versions: {'python': '3.12.10', 'sklearn': '1.6.1', 'pandas': '2.2.2', 'numpy': '2.0.2', 'joblib': '1.6.0'}
+reload check: identical validation scores

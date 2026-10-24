@@ -1,0 +1,31 @@
+ALL: rows 14911 | pos rate 0.117 | flag 0.100 | recall 0.242 | precision 0.282 | lift 2.42
+
+By race
+                  rows  patients  positives  pos_rate  flag_rate  recall  precision   lift                        note
+race                                                                                                                  
+?                  279       249         20     0.072      0.029   0.050      0.125  1.744                            
+AfricanAmerican   2820      1895        328     0.116      0.103   0.207      0.234  2.009                            
+Asian              116        93         10     0.086      0.052   0.000      0.000  0.000  UNRELIABLE (<200 patients)
+Caucasian        11180      7886       1324     0.118      0.102   0.254      0.294  2.487                            
+Hispanic           303       234         35     0.116      0.099   0.343      0.400  3.463                            
+Other              213       168         23     0.108      0.075   0.174      0.250  2.315  UNRELIABLE (<200 patients)
+
+By gender
+        rows  patients  positives  pos_rate  flag_rate  recall  precision   lift note
+gender                                                                               
+Female  8075      5572        974     0.121      0.104   0.243      0.283  2.345     
+Male    6836      4927        766     0.112      0.096   0.240      0.281  2.511     
+
+By age
+          rows  patients  positives  pos_rate  flag_rate  recall  precision   lift                        note
+age                                                                                                           
+[0-10)      16        16          0     0.000      0.000     NaN        NaN    NaN  UNRELIABLE (<200 patients)
+[10-20)    120        94          8     0.067      0.050   0.125      0.167  2.500  UNRELIABLE (<200 patients)
+[20-30)    260       171         33     0.127      0.235   0.818      0.443  3.487  UNRELIABLE (<200 patients)
+[30-40)    570       411         74     0.130      0.119   0.297      0.324  2.492                            
+[40-50)   1464      1059        159     0.109      0.114   0.277      0.263  2.426                            
+[50-60)   2668      1907        302     0.113      0.095   0.288      0.343  3.026                            
+[60-70)   3243      2368        343     0.106      0.092   0.187      0.215  2.031                            
+[70-80)   3731      2677        465     0.125      0.096   0.241      0.312  2.503                            
+[80-90)   2420      1718        299     0.124      0.097   0.194      0.247  1.998                            
+[90-100)   419       293         57     0.136      0.105   0.105      0.136  1.002                            

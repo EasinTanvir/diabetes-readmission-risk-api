@@ -1,0 +1,13 @@
+raw rows: 101766 | after died/hospice removal: 99343
+train: rows 69519 | positives 11.4% | patients 48993
+val: rows 14911 | positives 11.7% | patients 10498
+test: rows 14913 | positives 11.1% | patients 10499
+overlap train&val: 0 | train&test: 0 | val&test: 0
+cfg equal to notebook: True
+drop_cols: 16 ['nateglinide', 'chlorpropamide', 'acetohexamide', 'tolbutamide', 'acarbose', 'miglitol', 'troglitazone', 'tolazamide', 'examide', 'citoglipton', 'glyburide-metformin', 'glipizide-metformin', 'glimepiride-pioglitazone', 'metformin-rosiglitazone', 'metformin-pioglitazone', 'weight']
+keep: {'medical_specialty': ['Unknown', 'InternalMedicine', 'Emergency/Trauma', 'Family/GeneralPractice', 'Cardiology', 'Surgery-General', 'Nephrology', 'Orthopedics', 'Orthopedics-Reconstructive', 'Radiologist', 'Pulmonology', 'Psychiatry'], 'payer_code': ['Unknown', 'MC', 'HM', 'SP', 'BC', 'MD', 'CP', 'UN', 'CM', 'OG']}
+gender_mode: Female
+train: shape (69519, 122) | NaN 0 | object cols [] | equal to notebook: True
+val: shape (14911, 122) | NaN 0 | object cols [] | equal to notebook: True
+test: shape (14913, 122) | NaN 0 | object cols [] | equal to notebook: True
+ALL STEP 3 CHECKS PASSED

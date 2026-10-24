@@ -1,0 +1,207 @@
+case                                 status  detail
+race='Martian'                       SILENT  score 0.389 (base 0.389) | all-zero one-hot: race
+medical_specialty='Astrology'        SILENT  score 0.371 (base 0.389) | quietly mapped to medical_specialty_Other
+payer_code='ZZ'                      SILENT  score 0.387 (base 0.389) | quietly mapped to payer_code_Other
+gender='M'                           SILENT  score 0.389 (base 0.389) | all-zero one-hot: gender
+gender='Unknown/Invalid'             OK      score 0.389 (base 0.389)
+admission_type_id=99                 SILENT  score 0.388 (base 0.389) | quietly mapped to admission_type_id_Other
+admission_type_id='1' (string)       SILENT  score 0.388 (base 0.389) | quietly mapped to admission_type_id_Other
+A1Cresult='8'                        SILENT  score 0.386 (base 0.389) | all-zero one-hot: A1Cresult
+insulin='Increased'                  SILENT  score 0.389 (base 0.389) | all-zero one-hot: insulin
+metformin='up' (lowercase)           SILENT  score 0.387 (base 0.389) | all-zero one-hot: metformin
+diabetesMed='yes' (lowercase)        SILENT  score 0.349 (base 0.389) | quietly mapped to diabetesMed
+change='Yes' (not 'Ch')              SILENT  score 0.389 (base 0.389) | quietly mapped to change
+max_glu_serum='None'                 OK      score 0.389 (base 0.389)
+max_glu_serum=None                   OK      score 0.389 (base 0.389)
+max_glu_serum=nan                    OK      score 0.389 (base 0.389)
+max_glu_serum='?'                    SILENT  score 0.398 (base 0.389) | all-zero one-hot: max_glu_serum
+diag_1='V45'                         OK      score 0.358 (base 0.389)
+diag_1='E880'                        OK      score 0.358 (base 0.389)
+diag_1='v45'                         CRASH   ValueError: could not convert string to float: 'v45'
+diag_1='250.83'                      OK      score 0.387 (base 0.389)
+diag_1=''                            CRASH   ValueError: could not convert string to float: ''
+diag_1='abc'                         CRASH   ValueError: could not convert string to float: 'abc'
+diag_1=None                          CRASH   AttributeError: 'NoneType' object has no attribute 'startswith'
+diag_1=428                           CRASH   AttributeError: 'int' object has no attribute 'startswith'
+diag_1='?'                           OK      score 0.358 (base 0.389)
+age='[100-110)'                      SILENT  score 0.422 (base 0.389) | NaN in age
+age=55 (number)                      SILENT  score 0.422 (base 0.389) | NaN in age
+number_inpatient=-1                  SILENT  score 0.389 (base 0.389) | inf in number_inpatient
+number_inpatient=-3                  SILENT  score 0.389 (base 0.389) | NaN in number_inpatient
+time_in_hospital=-5                  OK      score 0.374 (base 0.389)
+num_medications=10000                OK      score 0.296 (base 0.389)
+number_emergency='2' (string)        CRASH   TypeError: loop of ufunc does not support argument 0 of type str which has no callable log1p method
+time_in_hospital='3' (string)        SILENT  score 0.389 (base 0.389) | non-numeric cols: time_in_hospital
+extra unknown column                 OK      score 0.389 (base 0.389)
+columns in reverse order             OK      score 0.389 (base 0.389)
+
+One field at a time: '?', None, missing
+
+['?' -> CRASH] 8 fields
+    time_in_hospital [ValueError: could not convert string to float: '?']
+    num_lab_procedures [ValueError: could not convert string to float: '?']
+    num_procedures [ValueError: could not convert string to float: '?']
+    num_medications [ValueError: could not convert string to float: '?']
+    number_outpatient [TypeError: loop of ufunc does not support argument 0 of type str which has no callable log1p method]
+    number_emergency [TypeError: loop of ufunc does not support argument 0 of type str which has no callable log1p method]
+    number_inpatient [TypeError: loop of ufunc does not support argument 0 of type str which has no callable log1p method]
+    number_diagnoses [ValueError: could not convert string to float: '?']
+
+['?' -> OK] 29 fields
+    encounter_id
+    patient_nbr
+    race
+    weight
+    admission_type_id
+    discharge_disposition_id
+    admission_source_id
+    payer_code
+    medical_specialty
+    diag_1
+    diag_2
+    diag_3
+    nateglinide
+    chlorpropamide
+    acetohexamide
+    tolbutamide
+    acarbose
+    miglitol
+    troglitazone
+    tolazamide
+    examide
+    citoglipton
+    glyburide-metformin
+    glipizide-metformin
+    glimepiride-pioglitazone
+    metformin-rosiglitazone
+    metformin-pioglitazone
+    change
+    diabetesMed
+
+['?' -> SILENT] 12 fields
+    gender [all-zero one-hot: gender]
+    age [NaN in age]
+    max_glu_serum [all-zero one-hot: max_glu_serum]
+    A1Cresult [all-zero one-hot: A1Cresult]
+    metformin [all-zero one-hot: metformin]
+    repaglinide [all-zero one-hot: repaglinide]
+    glimepiride [all-zero one-hot: glimepiride]
+    glipizide [all-zero one-hot: glipizide]
+    glyburide [all-zero one-hot: glyburide]
+    pioglitazone [all-zero one-hot: pioglitazone]
+    rosiglitazone [all-zero one-hot: rosiglitazone]
+    insulin [all-zero one-hot: insulin]
+
+[None -> CRASH] 6 fields
+    number_outpatient [TypeError: loop of ufunc does not support argument 0 of type NoneType which has no callable log1p met]
+    number_emergency [TypeError: loop of ufunc does not support argument 0 of type NoneType which has no callable log1p met]
+    number_inpatient [TypeError: loop of ufunc does not support argument 0 of type NoneType which has no callable log1p met]
+    diag_1 [AttributeError: 'NoneType' object has no attribute 'startswith']
+    diag_2 [AttributeError: 'NoneType' object has no attribute 'startswith']
+    diag_3 [AttributeError: 'NoneType' object has no attribute 'startswith']
+
+[None -> OK] 27 fields
+    encounter_id
+    patient_nbr
+    weight
+    admission_type_id
+    discharge_disposition_id
+    admission_source_id
+    payer_code
+    medical_specialty
+    max_glu_serum
+    A1Cresult
+    nateglinide
+    chlorpropamide
+    acetohexamide
+    tolbutamide
+    acarbose
+    miglitol
+    troglitazone
+    tolazamide
+    examide
+    citoglipton
+    glyburide-metformin
+    glipizide-metformin
+    glimepiride-pioglitazone
+    metformin-rosiglitazone
+    metformin-pioglitazone
+    change
+    diabetesMed
+
+[None -> SILENT] 16 fields
+    race [all-zero one-hot: race]
+    gender [all-zero one-hot: gender]
+    age [NaN in age]
+    time_in_hospital [NaN in time_in_hospital; non-numeric cols: time_in_hospital]
+    num_lab_procedures [NaN in num_lab_procedures; non-numeric cols: num_lab_procedures]
+    num_procedures [NaN in num_procedures; non-numeric cols: num_procedures]
+    num_medications [NaN in num_medications; non-numeric cols: num_medications]
+    number_diagnoses [NaN in number_diagnoses; non-numeric cols: number_diagnoses]
+    metformin [all-zero one-hot: metformin]
+    repaglinide [all-zero one-hot: repaglinide]
+    glimepiride [all-zero one-hot: glimepiride]
+    glipizide [all-zero one-hot: glipizide]
+    glyburide [all-zero one-hot: glyburide]
+    pioglitazone [all-zero one-hot: pioglitazone]
+    rosiglitazone [all-zero one-hot: rosiglitazone]
+    insulin [all-zero one-hot: insulin]
+
+[missing -> CRASH] 26 fields
+    race [KeyError: "['race'] not in index"]
+    gender [KeyError: 'gender']
+    age [KeyError: 'age']
+    admission_type_id [KeyError: 'admission_type_id']
+    discharge_disposition_id [KeyError: 'discharge_disposition_id']
+    admission_source_id [KeyError: 'admission_source_id']
+    payer_code [KeyError: "['payer_code'] not in index"]
+    medical_specialty [KeyError: "['medical_specialty'] not in index"]
+    number_outpatient [KeyError: "['number_outpatient'] not in index"]
+    number_emergency [KeyError: "['number_emergency'] not in index"]
+    number_inpatient [KeyError: "['number_inpatient'] not in index"]
+    diag_1 [KeyError: "['diag_1'] not in index"]
+    diag_2 [KeyError: "['diag_2'] not in index"]
+    diag_3 [KeyError: "['diag_3'] not in index"]
+    max_glu_serum [KeyError: "['max_glu_serum'] not in index"]
+    A1Cresult [KeyError: "['A1Cresult'] not in index"]
+    metformin [KeyError: "['metformin'] not in index"]
+    repaglinide [KeyError: "['repaglinide'] not in index"]
+    glimepiride [KeyError: "['glimepiride'] not in index"]
+    glipizide [KeyError: "['glipizide'] not in index"]
+    glyburide [KeyError: "['glyburide'] not in index"]
+    pioglitazone [KeyError: "['pioglitazone'] not in index"]
+    rosiglitazone [KeyError: "['rosiglitazone'] not in index"]
+    insulin [KeyError: "['insulin'] not in index"]
+    change [KeyError: 'change']
+    diabetesMed [KeyError: 'diabetesMed']
+
+[missing -> OK] 18 fields
+    encounter_id
+    patient_nbr
+    weight
+    nateglinide
+    chlorpropamide
+    acetohexamide
+    tolbutamide
+    acarbose
+    miglitol
+    troglitazone
+    tolazamide
+    examide
+    citoglipton
+    glyburide-metformin
+    glipizide-metformin
+    glimepiride-pioglitazone
+    metformin-rosiglitazone
+    metformin-pioglitazone
+
+[missing -> SILENT] 5 fields
+    time_in_hospital [filled with 0 (field absent): time_in_hospital]
+    num_lab_procedures [filled with 0 (field absent): num_lab_procedures]
+    num_procedures [filled with 0 (field absent): num_procedures]
+    num_medications [filled with 0 (field absent): num_medications]
+    number_diagnoses [filled with 0 (field absent): number_diagnoses]
+
+1 row vs 300 rows: max |score diff| = 0.00e+00
+batch with one bad diag row: whole batch CRASH (ValueError)
+prepare() leaves its input unchanged: True

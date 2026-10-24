@@ -1,0 +1,12 @@
+TEST (n=14913, positives=1658), cutoff 0.6411 from validation
+  flagged        got 0.0993 | expected 0.099 | OK
+  recall         got 0.2232 | expected 0.22 | OK
+  precision      got 0.2498 | expected 0.25 | OK
+  lift           got 2.2471 | expected 2.2 | OK
+  ROC-AUC        got 0.6707 | expected 0.671 | OK
+  avg precision  got 0.2115 | expected 0.211 | OK
+  confusion:
+ [[12144  1111]
+ [ 1288   370]]
+  expected confusion: [[12144 1111] [1288 370]]
+ALL WITHIN TOLERANCE

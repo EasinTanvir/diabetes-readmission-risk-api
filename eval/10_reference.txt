@@ -1,0 +1,2 @@
+val rows: 14911 | score mean: 0.459201
+pipeline.pkl sha256: 4d16911b11d5b27f278a3412e4b8c01721dc2c9fdf0a6a10f772b379b5d6a865
