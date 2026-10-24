@@ -1,0 +1,3 @@
+-r requirements.txt
+# figure only (eval/11_figure.py); not needed to run the API or tests
+matplotlib==3.11.2
