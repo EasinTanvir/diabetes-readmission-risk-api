@@ -45,11 +45,12 @@ beforehand. Sources: [eval/05_validation.txt](eval/05_validation.txt),
 | Recall (returners found) | 0.242 | 0.223 | 0 |
 | Precision (flagged who return) | 0.282 | 0.250 | - |
 | Lift over random flagging | 2.42x | 2.25x | - |
-| Accuracy | - | - | **0.883** |
+| Accuracy | 0.840 | 0.839 | **0.883** |
 | Confusion matrix `[[TN, FP], [FN, TP]]` | `[[12100, 1071], [1319, 421]]` | `[[12144, 1111], [1288, 370]]` | `[[13171, 0], [1740, 0]]` |
 
-The "never flag anyone" model scores 88% accuracy and is useless. This is why the project ranks
-patients on average precision and lift instead of accuracy.
+The "never flag anyone" model scores 88% accuracy and is useless. The real model scores lower
+accuracy than flagging nobody, because every flag on a non-returner counts as an error. This is why
+the project ranks patients on average precision and lift instead of accuracy.
 
 **Choosing how many to flag** (validation, cutoff re-set for each share):
 
